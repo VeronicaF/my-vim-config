@@ -20,6 +20,12 @@ map <DOWN> :res-5<CR>
 map <LEFT> :vertical res+5<CR>
 map <RIGHT> :vertical res-5<CR>
 
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 
 call plug#begin()
 Plug 'vim-airline/vim-airline'
